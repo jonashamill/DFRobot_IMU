@@ -14,7 +14,7 @@ ros::NodeHandle nh;
 
 // Create a publisher for the IMU data
 sensor_msgs::Imu imu_msg;
-ros::Publisher imu_pub("imu_data", &imu_msg);
+ros::Publisher imu_pub("/imu/data", &imu_msg);
 
 
 void setup() {
@@ -59,9 +59,9 @@ void loop() {
     imu_msg.orientation.z = q.z();
     imu_msg.orientation.w = q.w();
 
-   
+    // Populate the IMU message with sensor data
     imu_msg.header.stamp = nh.now();
-    imu_msg.header.imu_msg.header.frame_id = "base_link";
+    imu_msg.header.imu_msg.header.frame_id = "imu_link";
 
 
     // Publish the message
