@@ -14,10 +14,13 @@ In file included from /home/latte/sketchbook/libraries/ros_lib/ros.h:38:0,
 /home/latte/sketchbook/libraries/ros_lib/ros/node_handle.h:122:47: error: ‘nullptr’ was not declared in this scope
    Subscriber_ * subscribers[MAX_SUBSCRIBERS] {nullptr};
                                                ^
-pubData.ino:18:1: error: ‘sensor_msgs’ does not name a type
-pubData.ino:19:38: error: ‘imu_msg’ was not declared in this scope
 pubData.ino: In function ‘void loop()’:
-pubData.ino:47:5: error: ‘imu_msg’ was not declared in this scope
-pubData.ino:59:29: error: ‘q’ was not declared in this scope
-pubData.ino:74:6: error: ‘ros::NodeHandle {aka class ros::NodeHandle_<ArduinoHardware>}’ has no member named ‘spin0nce’
-pubData.ino:74:15: error: expected unqualified-id before ‘(’ token
+pubData.ino:61:5: error: ‘Quaternion’ is not a member of ‘tf’
+pubData.ino:61:5: note: suggested alternative:
+In file included from /home/latte/sketchbook/libraries/ros_lib/sensor_msgs/Imu.h:9:0,
+                 from pubData.ino:5:
+/home/latte/sketchbook/libraries/ros_lib/geometry_msgs/Quaternion.h:12:9: note:   ‘geometry_msgs::Quaternion’
+   class Quaternion : public ros::Msg
+         ^
+pubData.ino:63:29: error: ‘q’ was not declared in this scope
+pubData.ino:70:20: error: ‘sensor_msgs::Imu::_header_type {aka class std_msgs::Header}’ has no member named ‘imu_msg’
