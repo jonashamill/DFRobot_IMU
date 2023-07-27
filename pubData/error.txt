@@ -1,0 +1,23 @@
+In file included from /home/latte/sketchbook/libraries/ros_lib/ros/node_handle.h:43:0,
+                 from /home/latte/sketchbook/libraries/ros_lib/ros.h:38,
+                 from pubData.ino:3:
+/home/latte/sketchbook/libraries/ros_lib/rosserial_msgs/RequestParam.h: In constructor ‘rosserial_msgs::RequestParamResponse::RequestParamResponse()’:
+/home/latte/sketchbook/libraries/ros_lib/rosserial_msgs/RequestParam.h:72:39: error: ‘nullptr’ was not declared in this scope
+       ints_length(0), st_ints(), ints(nullptr),
+                                       ^
+In file included from /home/latte/sketchbook/libraries/ros_lib/ros.h:38:0,
+                 from pubData.ino:3:
+/home/latte/sketchbook/libraries/ros_lib/ros/node_handle.h: At global scope:
+/home/latte/sketchbook/libraries/ros_lib/ros/node_handle.h:121:45: error: ‘nullptr’ was not declared in this scope
+   Publisher * publishers[MAX_PUBLISHERS] = {nullptr};
+                                             ^
+/home/latte/sketchbook/libraries/ros_lib/ros/node_handle.h:122:47: error: ‘nullptr’ was not declared in this scope
+   Subscriber_ * subscribers[MAX_SUBSCRIBERS] {nullptr};
+                                               ^
+pubData.ino:18:1: error: ‘sensor_msgs’ does not name a type
+pubData.ino:19:38: error: ‘imu_msg’ was not declared in this scope
+pubData.ino: In function ‘void loop()’:
+pubData.ino:47:5: error: ‘imu_msg’ was not declared in this scope
+pubData.ino:59:29: error: ‘q’ was not declared in this scope
+pubData.ino:74:6: error: ‘ros::NodeHandle {aka class ros::NodeHandle_<ArduinoHardware>}’ has no member named ‘spin0nce’
+pubData.ino:74:15: error: expected unqualified-id before ‘(’ token
