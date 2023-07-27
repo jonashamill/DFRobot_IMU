@@ -14,7 +14,7 @@ ros::NodeHandle nh;
 
 // Create a publisher for the IMU data
 sensor_msgs::Imu imu_msg;
-ros::Publisher imu_pub("imu", &imu_msg);
+ros::Publisher imu_pub("imu_data", &imu_msg);
 
 
 void setup() {
@@ -37,29 +37,38 @@ void setup() {
 
 void loop() {
   if (sensor.available()) {
-    Serial.print("Acc\t"); Serial.print(sensor.Acc.X); Serial.print("\t"); Serial.print(sensor.Acc.Y); Serial.print("\t"); Serial.println(sensor.Acc.Z); //acceleration information of X,Y,Z
-    Serial.print("Gyro\t"); Serial.print(sensor.Gyro.X); Serial.print("\t"); Serial.print(sensor.Gyro.Y); Serial.print("\t"); Serial.println(sensor.Gyro.Z); //angular velocity information of X,Y,Z
-    Serial.print("Angle\t"); Serial.print(sensor.Angle.X); Serial.print("\t"); Serial.print(sensor.Angle.Y); Serial.print("\t"); Serial.println(sensor.Angle.Z); //angle information of X, Y, Z 
-    Serial.println(" ");
+    //Serial.print("Acc\t"); Serial.print(sensor.Acc.X); Serial.print("\t"); Serial.print(sensor.Acc.Y); Serial.print("\t"); Serial.println(sensor.Acc.Z); //acceleration information of X,Y,Z
+    //Serial.print("Gyro\t"); Serial.print(sensor.Gyro.X); Serial.print("\t"); Serial.print(sensor.Gyro.Y); Serial.print("\t"); Serial.println(sensor.Gyro.Z); //angular velocity information of X,Y,Z
+    //Serial.print("Angle\t"); Serial.print(sensor.Angle.X); Serial.print("\t"); Serial.print(sensor.Angle.Y); Serial.print("\t"); Serial.println(sensor.Angle.Z); //angle information of X, Y, Z 
+    //Serial.println(" ");
 
-    String AX = String(sensor.Acc.X)
-    String AY = String(sensor.Acc.Y)
-    String AZ = String(sensor.Acc.Z)
+    imu_msg.linear_acceleration.x = sensor.Acc.X
+    imu_msg.linear_acceleration.y = sensor.Acc.Y
+    imu_msg.linear_acceleration.z = sensor.Acc.Z
 
-    String GX = String(sensor.Gyro.X)
-    String GY = String(sensor.Gyro.Y)
-    String GZ = String(sensor.Gyro.Z)
+    imu_msg.angular_velocity.x = sensor.Gyro.X
+    imu_msg.angular_velocity.y = sensor.Gyro.Y
+    imu_msg.angular_velocity.z = sensor.Gyro.Z
 
-    String GX = String(sensor.Angle.X)
-    String GY = String(sensor.Angle.Y)
-    String GZ = String(sensor.Angle.Z)
+
+    //converts from euler to quaternion 
+    tf::Quaternion q = tf::createQuaternionFromRPY(sensor.Angle.X, sensor.Angle.Y, sensor.Angle.Z);
+
+    imu_msg.orientation.x = q.x();
+    imu_msg.orientation.y = q.y();
+    imu_msg.orientation.z = q.z();
+    imu_msg.orientation.w = q.w();
 
    
+    imu_msg.header.stamp = nh.now();
+    imu_msg.header.imu_msg.header.frame_id = "base_link";
 
 
-
-
+    // Publish the message
+    imu_pub.publish(&imu_msg);
 
   }
+
+  nh.spin0nce.();
 
 }
