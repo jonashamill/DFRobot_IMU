@@ -3,6 +3,8 @@
 #include <ros.h>
 #include <std_msgs/String.h>
 
+#define USE_USBCON
+
 //Use software serial port RX：10，TX：11
 SoftwareSerial mySerial(10, 11);
 
