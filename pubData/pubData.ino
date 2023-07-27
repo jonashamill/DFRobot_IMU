@@ -2,6 +2,10 @@
 #include <SoftwareSerial.h>
 #include <ros.h>
 #include <std_msgs/String.h>
+#include <sensor_msgs/Imu.h>
+#include <tf/tf.h>
+
+
 
 #define USE_USBCON
 
@@ -44,13 +48,13 @@ void loop() {
     //Serial.print("Angle\t"); Serial.print(sensor.Angle.X); Serial.print("\t"); Serial.print(sensor.Angle.Y); Serial.print("\t"); Serial.println(sensor.Angle.Z); //angle information of X, Y, Z 
     //Serial.println(" ");
 
-    imu_msg.linear_acceleration.x = sensor.Acc.X
-    imu_msg.linear_acceleration.y = sensor.Acc.Y
-    imu_msg.linear_acceleration.z = sensor.Acc.Z
+    imu_msg.linear_acceleration.x = sensor.Acc.X;
+    imu_msg.linear_acceleration.y = sensor.Acc.Y;
+    imu_msg.linear_acceleration.z = sensor.Acc.Z;
 
-    imu_msg.angular_velocity.x = sensor.Gyro.X
-    imu_msg.angular_velocity.y = sensor.Gyro.Y
-    imu_msg.angular_velocity.z = sensor.Gyro.Z
+    imu_msg.angular_velocity.x = sensor.Gyro.X;
+    imu_msg.angular_velocity.y = sensor.Gyro.Y;
+    imu_msg.angular_velocity.z = sensor.Gyro.Z;
 
 
     //converts from euler to quaternion 
@@ -71,6 +75,6 @@ void loop() {
 
   }
 
-  nh.spin0nce.();
+  nh.spinOnce();
 
 }
