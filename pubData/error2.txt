@@ -13,3 +13,35 @@ Compilation error: exit status 1
 
 
 https://github.com/ros-drivers/rosserial/pull/525
+
+
+
+NEW ERROR:
+
+
+
+
+/home/latte/ros_ws/src/DFRobot_IMU/pubData/pubData.ino: In function 'void loop()':
+/home/latte/ros_ws/src/DFRobot_IMU/pubData/pubData.ino:61:9: error: 'Quaternion' is not a member of 'tf'
+     tf::Quaternion q = tf::createQuaternionFromRPY(sensor.Angle.X, sensor.Angle.Y, sensor.Angle.Z);
+         ^~~~~~~~~~
+/home/latte/ros_ws/src/DFRobot_IMU/pubData/pubData.ino:61:9: note: suggested alternative:
+In file included from /home/latte/Arduino/libraries/Rosserial_Arduino_Library/src/sensor_msgs/Imu.h:10:0,
+                 from /home/latte/ros_ws/src/DFRobot_IMU/pubData/pubData.ino:5:
+/home/latte/Arduino/libraries/Rosserial_Arduino_Library/src/geometry_msgs/Quaternion.h:13:9: note:   'geometry_msgs::Quaternion'
+   class Quaternion : public ros::Msg
+         ^~~~~~~~~~
+/home/latte/ros_ws/src/DFRobot_IMU/pubData/pubData.ino:63:29: error: 'q' was not declared in this scope
+     imu_msg.orientation.x = q.x();
+                             ^
+/home/latte/ros_ws/src/DFRobot_IMU/pubData/pubData.ino:63:29: note: suggested alternative: 'sq'
+     imu_msg.orientation.x = q.x();
+                             ^
+                             sq
+/home/latte/ros_ws/src/DFRobot_IMU/pubData/pubData.ino:70:20: error: 'sensor_msgs::Imu::_header_type {aka class std_msgs::Header}' has no member named 'imu_msg'
+     imu_msg.header.imu_msg.header.frame_id = "imu_link";
+                    ^~~~~~~
+
+exit status 1
+
+Compilation error: 'Quaternion' is not a member of 'tf'
