@@ -14,13 +14,7 @@ SoftwareSerial mySerial(10, 11);
 
 DFRobot_WT61PC sensor(&mySerial);
 
-// Create ROS node handle
-ros::NodeHandle nh;
 
-
-// Create a publisher for the IMU data
-sensor_msgs::Imu imu_msg;
-ros::Publisher imu_pub("/imu/data", &imu_msg);
 
 
 void setup() {
@@ -33,6 +27,15 @@ void setup() {
   //                        FREQUENCY_100HZ for 100Hz, FREQUENCY_125HZ for 125Hz, FREQUENCY_200HZ for 200Hz.
   sensor.modifyFrequency(FREQUENCY_10HZ);
 
+  // Create ROS node handle
+  ros::NodeHandle nh;
+
+
+  // Create a publisher for the IMU data
+  sensor_msgs::Imu imu_msg;
+  ros::Publisher imu_pub("/imu/data", &imu_msg);
+
+  
   //Init ROS node
   nh.initNode();
 
