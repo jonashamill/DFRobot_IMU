@@ -1,0 +1,12 @@
+In file included from /home/latte/Arduino/libraries/Rosserial_Arduino_Library/src/std_msgs/Time.h:7:0,
+                 from /home/latte/Arduino/libraries/Rosserial_Arduino_Library/src/ros/node_handle.h:40,
+                 from /home/latte/Arduino/libraries/Rosserial_Arduino_Library/src/ros.h:38,
+                 from /tmp/.arduinoIDE-unsaved2023628-10602-1kto968.5xjh/HelloWorld/HelloWorld.pde:6:
+/home/latte/Arduino/libraries/Rosserial_Arduino_Library/src/ros/msg.h:40:10: fatal error: cstring: No such file or directory
+ #include <cstring>
+          ^~~~~~~~~
+compilation terminated.
+
+exit status 1
+
+Compilation error: exit status 1
