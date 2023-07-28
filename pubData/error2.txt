@@ -10,3 +10,6 @@ compilation terminated.
 exit status 1
 
 Compilation error: exit status 1
+
+
+https://github.com/ros-drivers/rosserial/pull/525
