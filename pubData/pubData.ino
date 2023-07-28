@@ -15,6 +15,10 @@ SoftwareSerial mySerial(10, 11);
 DFRobot_WT61PC sensor(&mySerial);
 
 
+// Create a publisher for the IMU data
+sensor_msgs::Imu imu_msg;
+ros::Publisher imu_pub("/imu/data", &imu_msg);
+
 
 
 void setup() {
@@ -31,9 +35,6 @@ void setup() {
   ros::NodeHandle nh;
 
 
-  // Create a publisher for the IMU data
-  sensor_msgs::Imu imu_msg;
-  ros::Publisher imu_pub("/imu/data", &imu_msg);
 
   
   //Init ROS node
